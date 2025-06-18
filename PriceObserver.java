@@ -4,6 +4,12 @@ public class PriceObserver implements OrderObserver {
 
     @Override
     public void update(Order order) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        var orderTotalValueUsd = order.getTotalItemValueUsd();
+
+        if (orderTotalValueUsd > DISCOUNT_MIN_ORDER_VALUE_USD) {
+            order.setDiscount(DISCOUNT_VALUE_USD);
+        } else {
+            order.setDiscount(0);
+        }
     }
 }
